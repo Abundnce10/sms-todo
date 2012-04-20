@@ -26,7 +26,7 @@ class TasksController < ApplicationController
 
   def create_sms
     @list = List.find(1)
-    @task = @list.tasks.new(:name => params[:Body])
+    @task = @list.tasks.new(:name => params[:Body], :number => params[:From])
     if @task.save
       render :text => '<Response><Sms>Awesome, thanks for the tip</Sms></Response>', :content_type => "text/xml"
     else
@@ -40,6 +40,12 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
+        @client = Twilio::REST::Client.new "ACdb7151def3c2410d8d13a1f0968af388", "a316129371a3712641d8858405bf8ccc"
+        @client.account.sms.messages.create(
+          :from => '+14155992671',
+          :to => '+1'+@task.number,
+          :body => 'Hey there! The task is complete.'
+        )
         format.html { redirect_to( list_tasks_url(@list), :notice => 'Task was successfully updated.') }
       else
         format.html { render :action => "edit" }
