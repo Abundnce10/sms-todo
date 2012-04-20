@@ -44,6 +44,9 @@ GEM
     jruby-openssl (0.7.4)
       bouncy-castle-java
     jruby-rack (1.0.10)
+    json (1.6.5)
+    jwt (0.1.4)
+      json (>= 1.2.4)
     kgio (2.6.0)
     mail (2.2.19)
       activesupport (>= 2.3.6)
@@ -51,6 +54,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    multi_json (1.1.0)
     mysql2 (0.2.13)
     pg (0.13.2)
     polyglot (0.3.2)
@@ -88,6 +92,10 @@ GEM
       jruby-rack (>= 1.0.9)
       trinidad_jars (>= 1.0.1)
     trinidad_jars (1.0.1)
+    twilio-ruby (3.5.1)
+      builder (>= 2.1.2)
+      jwt (>= 0.1.2)
+      multi_json (>= 1.0.3)
     tzinfo (0.3.29)
     unicorn (4.1.1)
       kgio (~> 2.4)
@@ -112,4 +120,5 @@ DEPENDENCIES
   sqlite3
   thor
   trinidad
+  twilio-ruby (= 3.5.1)
   unicorn

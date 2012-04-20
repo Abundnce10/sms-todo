@@ -25,12 +25,12 @@ class TasksController < ApplicationController
   end
 
   def create_sms
-    @list = List.find(1)
-    @task = @list.tasks.new(:name => params[:Body])
+    @list = List.first
+    @task = @list.tasks.new(:name => params[:Body], :phonenumber => params[:From])
     if @task.save
-      render :text => '<Response><Sms>Awesome, thanks for the tip</Sms></Response>', :content_type => "text/xml"
-    else
-      render :text => '<Response><Sms>Sad Panda :(</Sms></Response>', :content_type => 'text/xml'
+      render :text => '<Response><Sms>Thanks for the suggestion, you rock!</Sms></Response>', :content_type => 'text/xml'
+    else 
+      render :text => '<Response><Sms>Something terrible happened</Sms></Response>', :content_type => 'text/xml'
     end
   end
 

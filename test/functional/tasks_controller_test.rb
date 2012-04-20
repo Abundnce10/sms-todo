@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class TasksControllerTest < ActionController::TestCase
+
+  fixtures :lists
+
   setup do
     @list = lists(:one)
     @task = tasks(:one)
@@ -18,6 +21,16 @@ class TasksControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to list_tasks_path(@list)
+  end
+
+  test "should create task via SMS" do
+    assert_difference('Task.count') do
+      response = post :create_sms, :Body => "Foo", :From => "123-456-7890"
+    end
+    
+    assert_equal "123-456-7890", assigns(:task).phonenumber
+
+    assert_equal '<Response><Sms>Thanks for the suggestion, you rock!</Sms></Response>', response.body
   end
 
   test "should update task" do
