@@ -14,5 +14,6 @@ Simple RAILS app for task tracking.
 8. $ rails s
 9. Text your Twilio number (include Sandbox Pin if on free account) with your To Do item.
 10. Refresh your To Do List.  Watch it populate based on your Text Message.
+11. Verify your number on Twilio if you want to receive a notification when you complete the task.
 
 # Enjoy!
